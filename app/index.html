@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice City Nights — GTA-style cover art maker</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VCN</span>
+    <span class="brand-name">VICE CITY NIGHTS</span>
+    <span class="brand-sub">cover art maker</span>
+  </div>
+  <div class="top-actions">
+    <label class="btn ghost" for="file-input">Load a photo</label>
+    <input id="file-input" type="file" accept="image/*" hidden>
+    <button id="export-btn" class="btn primary" type="button">Export PNG</button>
+  </div>
+</header>
+
+<main class="workspace">
+  <aside class="controls" aria-label="Cover controls">
+    <section class="group">
+      <h2>Photo</h2>
+      <div class="samples">
+        <button class="sample-btn" type="button" data-photo="boulevard">
+          <img src="samples/boulevard.jpg" alt="Boulevard at sunset sample photo">
+          <span>Boulevard</span>
+        </button>
+        <button class="sample-btn" type="button" data-photo="pier">
+          <img src="samples/pier.jpg" alt="Pier fishing sample photo">
+          <span>Pier</span>
+        </button>
+      </div>
+      <p class="hint">Or load your own photo — it never leaves your machine.</p>
+    </section>
+
+    <section class="group">
+      <h2>Layout</h2>
+      <div class="seg" id="layout-seg" role="group" aria-label="Panel layout">
+        <button type="button" data-layout="solo">Solo</button>
+        <button type="button" data-layout="duo">Duo</button>
+        <button type="button" data-layout="trio">Trio</button>
+      </div>
+      <p class="hint">Click a panel in the preview to select it, drag to reposition, scroll to zoom.</p>
+    </section>
+
+    <section class="group">
+      <h2>Colour grade</h2>
+      <div class="seg wrap" id="grade-seg" role="group" aria-label="Colour grade">
+        <button type="button" data-grade="sunset">Sunset</button>
+        <button type="button" data-grade="neon">Neon Nights</button>
+        <button type="button" data-grade="pink">Vice Pink</button>
+        <button type="button" data-grade="noir">Noir</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>Words</h2>
+      <label class="field">
+        <span>Title</span>
+        <input id="title-input" type="text" value="VICE CITY NIGHTS" maxlength="40">
+      </label>
+      <label class="field">
+        <span>Caption</span>
+        <input id="caption-input" type="text" value="One last job under the neon sky." maxlength="80">
+      </label>
+      <label class="field">
+        <span>Starring</span>
+        <input id="cast-input" type="text" value="MARCO VOSS &middot; LENA CRUZ" maxlength="80">
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>Selected panel</h2>
+      <div class="panel-tools">
+        <label class="field">
+          <span>Photo in this panel</span>
+          <select id="panel-photo"></select>
+        </label>
+        <label class="field">
+          <span>Zoom <output id="zoom-out">100%</output></span>
+          <input id="zoom-input" type="range" min="100" max="300" value="100">
+        </label>
+        <button id="reset-crop" class="btn ghost small" type="button">Reset crop</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>Export size</h2>
+      <div class="seg" id="size-seg" role="group" aria-label="Export size">
+        <button type="button" data-size="square">1080 &times; 1080</button>
+        <button type="button" data-size="portrait">1080 &times; 1350</button>
+        <button type="button" data-size="landscape">1920 &times; 1080</button>
+      </div>
+      <p class="hint" id="export-status">Ready to export.</p>
+    </section>
+  </aside>
+
+  <section class="stage" aria-label="Cover preview">
+    <div class="canvas-wrap">
+      <canvas id="preview" width="1080" height="1080"></canvas>
+      <div id="panel-tag" class="panel-tag" hidden>Panel 1</div>
+    </div>
+  </section>
+</main>
+
+<footer class="footnote">
+  All original art — no Rockstar logo, artwork or fonts. Sample photos are free to use. Your photos stay on your machine.
+</footer>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
